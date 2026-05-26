@@ -1,0 +1,12 @@
+NOTICE - Third Party Licenses
+
+This project is a fork of DeathStarBench (https://github.com/DeathStarBench/DeathStarBench) authored by the SAIL group at Cornell University and is licensed under the GNU GPL v2.0.
+
+Third‑party components included in this repository:
+
+- PicoSHA2 (https://github.com/okdshin/PicoSHA2) – Licensed under the MIT License (see third_party/PicoSHA2/LICENSE).
+- OpenResty‑thrift (docker/openresty-thrift) – Licensed under the Apache License 2.0 (see docker/openresty-thrift/LICENSE).
+- Other open‑source libraries that may be pulled by CMake or the Docker images retain their own licenses as indicated in their source directories.
+
+All such licenses are reproduced in the corresponding LICENSE files located in their directories.
+Modifications made in this fork are licensed under the Apache License 2.0 (see LICENSE-APACHE.txt).

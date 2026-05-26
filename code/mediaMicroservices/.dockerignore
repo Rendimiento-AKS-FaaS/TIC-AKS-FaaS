@@ -1,0 +1,14 @@
+*
+!Dockerfile
+!media_service.thrift
+!src/
+!CMakeLists.txt
+!cmake/
+!datasets/
+!gen-cpp/
+!gen-lua/
+!scripts/
+!third_party/
+!config/
+!nginx-web-server/
+!nginx-web-server/**

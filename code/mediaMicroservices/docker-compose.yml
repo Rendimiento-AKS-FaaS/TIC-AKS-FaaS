@@ -1,0 +1,74 @@
+version: "3.8"
+
+services:
+
+  page-service:
+    image: media-microservices-read:v1
+    restart: always
+    entrypoint: PageService
+    environment:
+      - SERVICE_CONFIG_FILE=/media-microservices/config/service-config.json
+
+  movie-info-service:
+    image: media-microservices-read:v1
+    restart: always
+    entrypoint: MovieInfoService
+    environment:
+      - SERVICE_CONFIG_FILE=/media-microservices/config/service-config.json
+
+  movie-review-service:
+    image: media-microservices-read:v1
+    restart: always
+    entrypoint: MovieReviewService
+    environment:
+      - SERVICE_CONFIG_FILE=/media-microservices/config/service-config.json
+
+  review-storage-service:
+    image: media-microservices-read:v1
+    restart: always
+    entrypoint: ReviewStorageService
+    environment:
+      - SERVICE_CONFIG_FILE=/media-microservices/config/service-config.json
+
+  cast-info-service:
+    image: media-microservices-read:v1
+    restart: always
+    entrypoint: CastInfoService
+    environment:
+      - SERVICE_CONFIG_FILE=/media-microservices/config/service-config.json
+
+  plot-service:
+    image: media-microservices-read:v1
+    restart: always
+    entrypoint: PlotService
+    environment:
+      - SERVICE_CONFIG_FILE=/media-microservices/config/service-config.json
+
+  nginx-web-server:
+    image: yg397/openresty-thrift:xenial
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - page-service
+      - movie-info-service
+      - movie-review-service
+      - review-storage-service
+      - cast-info-service
+      - plot-service
+    volumes:
+      - ./nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts
+      - ./nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./nginx-web-server/jaeger-config.json:/usr/local/openresty/nginx/jaeger-config.json
+      - ./gen-lua:/gen-lua
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+      - "14268:14268"
+
+networks:
+  default:
+    name: mediamicroservices_default

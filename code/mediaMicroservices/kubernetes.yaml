@@ -1,0 +1,308 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger
+  labels:
+    app: jaeger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jaeger
+  template:
+    metadata:
+      labels:
+        app: jaeger
+    spec:
+      containers:
+      - name: jaeger
+        image: jaegertracing/all-in-one:latest
+        ports:
+        - containerPort: 16686
+          name: query
+        - containerPort: 6831
+          protocol: UDP
+          name: agent-udp
+        - containerPort: 14268
+          name: collector-http
+        - containerPort: 4317
+          name: collector-grpc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger
+spec:
+  selector:
+    app: jaeger
+  ports:
+  - name: query
+    port: 16686
+    targetPort: 16686
+  - name: agent-udp
+    port: 6831
+    protocol: UDP
+    targetPort: 6831
+  - name: collector-http
+    port: 14268
+    targetPort: 14268
+  - name: collector-grpc
+    port: 4317
+    targetPort: 4317
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: page-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: page-service
+  template:
+    metadata:
+      labels:
+        app: page-service
+    spec:
+      containers:
+      - name: page-service
+        image: imagesreadflow.azurecr.io/media-microservices-read:v1
+        command: ["PageService"]
+        env:
+        - name: SERVICE_CONFIG_FILE
+          value: "/media-microservices/config/service-config.json"
+        ports:
+        - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: page-service
+spec:
+  selector:
+    app: page-service
+  ports:
+  - port: 9090
+    targetPort: 9090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-info-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-info-service
+  template:
+    metadata:
+      labels:
+        app: movie-info-service
+    spec:
+      containers:
+      - name: movie-info-service
+        image: imagesreadflow.azurecr.io/media-microservices-read:v1
+        command: ["MovieInfoService"]
+        env:
+        - name: SERVICE_CONFIG_FILE
+          value: "/media-microservices/config/service-config.json"
+        ports:
+        - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-info-service
+spec:
+  selector:
+    app: movie-info-service
+  ports:
+  - port: 9090
+    targetPort: 9090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-review-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-review-service
+  template:
+    metadata:
+      labels:
+        app: movie-review-service
+    spec:
+      containers:
+      - name: movie-review-service
+        image: imagesreadflow.azurecr.io/media-microservices-read:v1
+        command: ["MovieReviewService"]
+        env:
+        - name: SERVICE_CONFIG_FILE
+          value: "/media-microservices/config/service-config.json"
+        ports:
+        - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-review-service
+spec:
+  selector:
+    app: movie-review-service
+  ports:
+  - port: 9090
+    targetPort: 9090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review-storage-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: review-storage-service
+  template:
+    metadata:
+      labels:
+        app: review-storage-service
+    spec:
+      containers:
+      - name: review-storage-service
+        image: imagesreadflow.azurecr.io/media-microservices-read:v1
+        command: ["ReviewStorageService"]
+        env:
+        - name: SERVICE_CONFIG_FILE
+          value: "/media-microservices/config/service-config.json"
+        ports:
+        - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: review-storage-service
+spec:
+  selector:
+    app: review-storage-service
+  ports:
+  - port: 9090
+    targetPort: 9090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cast-info-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cast-info-service
+  template:
+    metadata:
+      labels:
+        app: cast-info-service
+    spec:
+      containers:
+      - name: cast-info-service
+        image: imagesreadflow.azurecr.io/media-microservices-read:v1
+        command: ["CastInfoService"]
+        env:
+        - name: SERVICE_CONFIG_FILE
+          value: "/media-microservices/config/service-config.json"
+        ports:
+        - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cast-info-service
+spec:
+  selector:
+    app: cast-info-service
+  ports:
+  - port: 9090
+    targetPort: 9090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plot-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plot-service
+  template:
+    metadata:
+      labels:
+        app: plot-service
+    spec:
+      containers:
+      - name: plot-service
+        image: imagesreadflow.azurecr.io/media-microservices-read:v1
+        command: ["PlotService"]
+        env:
+        - name: SERVICE_CONFIG_FILE
+          value: "/media-microservices/config/service-config.json"
+        ports:
+        - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plot-service
+spec:
+  selector:
+    app: plot-service
+  ports:
+  - port: 9090
+    targetPort: 9090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-web-server-read
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-web-server-read
+  template:
+    metadata:
+      labels:
+        app: nginx-web-server-read
+    spec:
+      containers:
+      - name: nginx-web-server-read
+        image: imagesreadflow.azurecr.io/nginx-web-server-read:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-web-server-read
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx-web-server-read
+  ports:
+  - port: 80
+    targetPort: 8080

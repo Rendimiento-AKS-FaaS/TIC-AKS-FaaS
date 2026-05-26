@@ -1,0 +1,27 @@
+{
+  "mongodb_uri": "mongodb+srv://mediaRead:mayonesa123@mediaservices.c9zkjtt.mongodb.net/?appName=mediaservices",
+  "page-service": {
+    "addr": "page-service",
+    "port": 9090
+  },
+  "movie-info-service": {
+    "addr": "movie-info-service",
+    "port": 9090
+  },
+  "movie-review-service": {
+    "addr": "movie-review-service",
+    "port": 9090
+  },
+  "review-storage-service": {
+    "addr": "review-storage-service",
+    "port": 9090
+  },
+  "cast-info-service": {
+    "addr": "cast-info-service",
+    "port": 9090
+  },
+  "plot-service": {
+    "addr": "plot-service",
+    "port": 9090
+  }
+}
