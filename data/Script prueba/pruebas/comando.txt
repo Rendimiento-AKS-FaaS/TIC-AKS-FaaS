@@ -1,0 +1,9 @@
+1. Activar o crear entorno virtual (locust-env)
+2. Ir al directorio "pruebas"
+3. Ejecutar el siguiente comando 
+
+locust -f <nombre_script>.py --host <URL_del_servicio> --headless -u
+<numero_de_usuarios> -r <tasa_de_incremento> -t <tiempo_de_ejecucion> --csv
+<nombre_resultados>
+
+Nota: Remplazar parámetros con los datos correspondientes
