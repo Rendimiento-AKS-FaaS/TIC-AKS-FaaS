@@ -1,0 +1,11 @@
+# Quarto build outputs
+.quarto/
+*_files/
+*.html
+
+# OS files
+.DS_Store
+Thumbs.db
+
+/.quarto/
+**/*.quarto_ipynb
