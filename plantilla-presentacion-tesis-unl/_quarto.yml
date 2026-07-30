@@ -1,7 +1,0 @@
-project:
-  title: "Presentación de Tesis - UNL"
-  type: default
-
-# NOTA: Toda la configuración del formato revealjs vive en el YAML
-# de presentacion-tesis.qmd. Así el archivo .qmd es autocontenido y
-# puede copiarse a otro proyecto sin perder configuración.
