@@ -4,7 +4,6 @@
 
 ![GitHub](https://img.shields.io/badge/Status-Active-success)
 ![Azure](https://img.shields.io/badge/Azure-AKS%20%7C%20Functions-0078D4)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
@@ -28,19 +27,16 @@ TIC-AKS-FaaS/
 │
 ├── code/
 │   └── mediaMicroservices/
-│       ├── AKS/
-│       ├── AzureFunctions/
+│       ├── mediaFunctions/
 │       └── ...
 │
 ├── data/
-│   ├── resultados/
-│   ├── mediciones/
-│   └── scripts/
+│   ├── BDs de MediaMicroservices/
+│   ├── Resultados de Costos/
+│   └── Script de las pruebas/
 │
 ├── figures/
-│   ├── arquitectura/
-│   ├── resultados/
-│   └── diagramas/
+│   
 │
 └── README.md
 ```
@@ -54,85 +50,6 @@ TIC-AKS-FaaS/
 - Ejecutar pruebas de carga bajo diferentes niveles de concurrencia.
 - Comparar el rendimiento entre ambos modelos de despliegue.
 - Analizar el consumo de recursos y el costo operativo.
-
----
-
-# 🛠 Tecnologías utilizadas
-
-## Backend
-
-- .NET
-- C#
-- ASP.NET Core
-
-## Cloud
-
-- Microsoft Azure
-- Azure Kubernetes Service (AKS)
-- Azure Functions
-- Azure Monitor
-
-## Contenedores
-
-- Docker
-- Kubernetes
-
-## Base de datos
-
-- MongoDB Atlas
-
-## Herramientas de pruebas
-
-- Locust
-- Prometheus
-- Grafana
-
----
-
-# 📊 Contenido del repositorio
-
-## `code/`
-
-Contiene la implementación del microservicio Media para los diferentes entornos evaluados durante la investigación.
-
-## `data/`
-
-Incluye:
-
-- Resultados experimentales
-- Datos utilizados durante las pruebas
-- Scripts auxiliares
-- Mediciones de rendimiento
-
-## `figures/`
-
-Contiene todas las imágenes utilizadas en la tesis y documentación, incluyendo:
-
-- Arquitectura del sistema
-- Diagramas
-- Resultados experimentales
-- Gráficas comparativas
-
----
-
-# 🏗 Arquitectura general
-
-```text
-                 Cliente
-                    │
-                    ▼
-            Servicio Frontend
-                    │
-        ┌───────────┴───────────┐
-        │                       │
-        ▼                       ▼
- Azure Functions            AKS Cluster
-        │                       │
-        └───────────┬───────────┘
-                    │
-                    ▼
-             MongoDB Atlas
-```
 
 ---
 
@@ -153,19 +70,6 @@ Las pruebas fueron ejecutadas utilizando diferentes niveles de carga para compar
 
 ---
 
-# 📁 Organización de datos
-
-Los resultados experimentales se encuentran organizados para facilitar su análisis y reproducibilidad.
-
-Entre ellos se incluyen:
-
-- Archivos CSV
-- Resultados de Locust
-- Métricas de Azure
-- Datos utilizados para generar las gráficas del estudio
-
----
-
 # 🔬 Caso de estudio
 
 El proyecto utiliza el microservicio **Media** perteneciente al benchmark **DeathStarBench**, adaptándolo para su ejecución tanto en:
@@ -175,14 +79,3 @@ El proyecto utiliza el microservicio **Media** perteneciente al benchmark **Deat
 
 Esto permite realizar una comparación objetiva entre un modelo basado en contenedores (CaaS) y uno Serverless (FaaS).
 
----
-
-# 👥 Autores
-
-Proyecto desarrollado como parte del trabajo de investigación sobre evaluación de arquitecturas Cloud Native utilizando servicios de Microsoft Azure.
-
----
-
-# 📄 Licencia
-
-Este proyecto se distribuye bajo la licencia **MIT**.
